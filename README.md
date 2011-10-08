@@ -8,9 +8,9 @@ It is designed to give the most freedom to the designer and developer of the sit
 
  * Inline editing
  * Multiple content types
- ** Text section
- ** List (of links)
- ** More TBD
+     * Text section
+     * List (of links)
+     * More TBD
  * Markdown based syntax option
  * Very AJAX based, probably at most one page which is available out of context of the content itself
  * Potential to reuse content by linking it within multiple pages
