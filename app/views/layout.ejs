@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Johannes CMS</title>
+	<link rel="stylesheet" href="/assets/style/reset.css" type="text/css" media="screen" charset="utf-8">
+	<link rel="stylesheet" href="/assets/style/text.css" type="text/css" media="screen" charset="utf-8">
+	<link rel="stylesheet" href="/assets/style/default.css" type="text/css" media="screen" charset="utf-8">
+	{{- styles.get() }}
+</head>
+<body>
+	<div id="pageframe">
+		<div id="header">
+			<img src="/assets/img/johannes-logo.png" alt="Johannes Content Management System">
+		</div>
+		<div id="content">
+			<div id="primary">
+				{{- body }}
+			</div>
+			<div id="rightcol">
+				<ul>
+					<li><a href="https://hg.cbate.com/johannes/">Repository</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="login" style="display: none;">
+		<form method="post" action="/_auth">
+			<input type="text" name="username" value="" id="username" autocomplete="off">
+			<input type="password" name="password" value="" id="password">
+		</form>
+	</div>
+	<div id="edit-section" style="display: none;">
+		<form method="post" action="/_save">
+			<fieldset>
+				<input type="text" name="header" value="" id="edit-header">
+				<textarea name="body" id="edit-body" rows="8"></textarea>
+				<div class="submit-area">
+					<a href="#save" class="save">Save</a>
+					<a href="#cancel" class="cancel">Cancel</a>
+					<span class="markup-ctrl"><input type="checkbox" name="markup" value="html" id="edit-html"> HTML</span>
+				</div>
+				<input type="hidden" name="id" value="" id="edit-id">
+				<input type="hidden" name="token" value="" id="edit-token">
+			</fieldset>
+		</form>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/assets/js/jquery.form.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/assets/js/jquery.simplemodal.1.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	{{- scripts.get() }}
+</body>
+</html>

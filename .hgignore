@@ -1,0 +1,8 @@
+syntax: glob
+.DS_Store
+fabfile.py*
+node_modules/**/*
+
+syntax: regexp
+^logs
+^private
