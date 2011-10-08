@@ -1,0 +1,16 @@
+{
+	"folders": {
+		"views": "views",
+		"staticFiles": "public",
+		"languages": "lang"
+	},
+	"app": {
+		"name": "Colin.is",
+		"port": 5982,
+		"db": "colin-is",
+		"viewengine": "ejs"
+	},
+	"language": {
+		"code": "en"
+	}
+}

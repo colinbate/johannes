@@ -1,0 +1,22 @@
+{
+	"entity": {
+		"page": {
+			"error": {
+				"save": "Could not save the page.",
+				"load": "Could not find the page requested."
+			}
+		},
+		"section": {},
+		"linkroll": {},
+		"user": {
+			"error": {
+				"auth": "Your username or password are incorrect, please try again."
+			}
+		}
+	},
+	"controller": {
+		"admin": {
+			"title": "Manage your site"
+		}
+	}
+}
