@@ -6,12 +6,9 @@
 //  Copyright 2011 Colin Bate. All rights reserved.
 // 
 
-var util = require('util');
-var markdown = require('markdown');
-var property = require('property');
-
-// 1. Load configuration
-var config = require('./lib/config').parse(__dirname + '/config.json');
+// 1. Load common components/configuration
+var Johannes = require('./lib/common');
+var config = Johannes.config;
 
 // 2. Set up web server (express)
 var express = require('express');
@@ -26,27 +23,37 @@ app.configure(function () {
 	    open: '{{',
 	    close: '}}'
 	});
+	app.use(app.router);
+	app.use(Johannes.routes.catchAll);
 });
+
+// 3. Set up view helpers
+var property = require('property');
 app.dynamicHelpers ({
 	scripts: property.factory(),
 	styles: property.factory()
 });
 
 app.locals({
-	lang: config.language.current
+	lang: config.language.current,
+	d: function (value, defval) {
+		return (typeof (value) !== 'undefined') ? value : defval;
+	} 
 });
 
-// 3. Connect to database (CouchDB)
-var cradle = require('cradle');
-var db = new(cradle.Connection)().database(config.app.db);
+var listen = function (err) {
+	if (err) {
+		console.log('Error loading controllers');
+		process.exit(1);
+	}
+	console.log('Finished loading controllers');
+	
+	// Start listening
+	app.listen(config.app.port);
+	console.log(config.app.name, 'running on port', config.app.port);
+};
 
-// 4. Setup entities
-var entities = require('./lib/loader').load({db: db});
+// 4. Load in controllers
+Johannes.controllers.initialize(app, listen);
 
-// 5. Load in controllers
-var routeMaster = require('./lib/route-master');
-routeMaster.initialize(app, {Page: entities.page, someVar: 'adhoc value'});
 
-// 6. Start listening
-app.listen(config.app.port);
-console.log(config.app.name, 'running on port', config.app.port);

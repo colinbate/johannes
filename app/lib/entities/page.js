@@ -1,5 +1,5 @@
-var Section = require('./section');
-var Linkroll = require('./linkroll');
+var Johannes = require('../common');
+var Section = Johannes.entity('section');
 
 var loadPage = function (pageName, db, webout) {
 	pageName = 'page-' + pageName;
@@ -28,10 +28,9 @@ var renderPage = function (page, callback) {
 };
 
 module.exports = {
-	db: undefined,
 	load: function(pageName, callback) {
 		pageName = 'page-' + pageName;
-		this.db.get(pageName, function (err, res) {
+		Johannes.db.get(pageName, function (err, res) {
 			if (err) {
 				callback(err);
 				return;
