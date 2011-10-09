@@ -3,7 +3,10 @@
 		"page": {
 			"error": {
 				"save": "Could not save the page.",
-				"load": "Could not find the page requested."
+				"load": {
+					"title": "Page not found",
+					"message": "Could not find the page requested."
+				}
 			}
 		},
 		"section": {},

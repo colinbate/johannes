@@ -1,5 +1,5 @@
 // 
-//  route-master.js
+//  Controller Loading (route-master.js)
 //  Johannes
 //  
 //  Created by Colin Bate on 2011-10-03.
@@ -8,21 +8,11 @@
 var fs = require('fs');
 var allowedVerbs = /^get|post|put|delete$/;
 
-var loadController = function (file, server, context) {
+var loadController = function (file, server) {
 	var app = server;
 	var controller = require('./controllers/' + file);
 	var routes = controller.routes;
-	var deps = controller.dependencies;
 	var thisAction, meth, url;
-	
-	if (typeof (deps) !== 'undefined') {
-		var dk = Object.keys(deps);
-		for (var key in dk) {
-			if (typeof (context[dk[key]]) !== 'undefined') {
-				deps[dk[key]] = context[dk[key]];
-			}
-		}
-	}
 
 	Object.keys(controller).map(function(action){
 		var fn = controller[action];
@@ -47,18 +37,27 @@ var loadController = function (file, server, context) {
 	});
 };
 
-var parseControllers = function (server, context) {
+var parseControllers = function (server, callback) {
+	var isCallback = (typeof (callback) === 'function');
 	fs.readdir(__dirname + '/controllers', function (err, files) {
-		if (err) throw err;
+		if (err) {
+			if (isCallback) {
+				callback(err);
+			}
+			return;
+		}
 		files.forEach(function(file){
 			console.log('loading controller ' + file);
-			loadController(file, server, context);
+			loadController(file, server);
 		});
+		if (isCallback) {
+			callback(null);
+		}
 	});
 };
 
 module.exports = {
-	initialize: function (server, context) {
-		parseControllers(server, context);
+	initialize: function (server, callback) {
+		parseControllers(server, callback);
 	}
 };

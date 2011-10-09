@@ -1,3 +1,13 @@
+// 
+//  Section entity (section.js)
+//  Johannes
+//  
+//  Created by Colin Bate on 2011-10-09.
+//  Copyright 2011 Colin Bate. All rights reserved.
+// 
+
+var Johannes = require('../common');
+
 var tidySection = function (section) {
 	section.id = section._id;
 	section.markup = section.markup || 'html';
@@ -18,7 +28,6 @@ var saveSection = function (db, webout, sectionId, header, body, markup) {
 };
 
 module.exports = {
-	db: undefined,
 	load: function (sectionName, callback) {
 		
 	},
@@ -27,7 +36,7 @@ module.exports = {
 			return;
 		}
 		if (sections) {
-			this.db.get(sections, function (err, res) {
+			Johannes.db.get(sections, function (err, res) {
 				if (err) {
 					callback(err);
 					return;
@@ -43,7 +52,7 @@ module.exports = {
 		return section;
 	},
 	save: function (id, section, callback) {
-		this.db.merge(id, section, function (err, res) {
+		Johannes.db.merge(id, section, function (err, res) {
 			
 			if (err) {
 				webout.send({success: false, message: 'Could not save the section ' + sectionId});

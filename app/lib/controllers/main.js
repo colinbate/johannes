@@ -6,29 +6,28 @@
 //  Copyright 2011 Colin Bate. All rights reserved.
 // 
 
+var Johannes = require('../common.js');
+var Page = Johannes.entity('page');
 
 module.exports = {
 	routes: {
-		home: '/',
+		index: '/',
+		home: '/home',
 		test: '/test'
 	},
-	dependencies: {
-		Page: undefined,
-		someVar: 'default value'
-	},
 	
-	home: function (req, res) {
+	index: function (req, res) {
 		res.render('index');
-		//this.dependencies.Page.load('home', function (err, page) {
-		//			if (err) {
-		//				res.render('error', {message: config.language.current.entity.page.error.load});
-		//				return;
-		//			}
-		//			res.render('shell', {page: page, pageId: page.id});
-		//		});
 	},
-	
-	test: function (req, res) {
-		res.send('Test output for Colin: ' + this.dependencies.someVar);
+	home: function (req, res) {
+		var lang = Johannes.lang;
+		Page.load('home', function (err, page) {
+			if (err) {
+				res.render('error', {status: 404, message: lang.entity.page.error.load.message, title: lang.entity.page.error.load.title});
+				return;
+			}
+			res.render('shell', {page: page, pageId: page.id});
+		});
 	}
+
 };

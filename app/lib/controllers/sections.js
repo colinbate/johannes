@@ -6,6 +6,9 @@
 //  Copyright 2011 Colin Bate. All rights reserved.
 // 
 
+var Johannes = require('../common');
+var Section = Johannes.entity('section');
+
 var renderSection = function (id, db, webout, part) {
 	part = part || 'body';
 	if (!(/p?body|header|markup/.test(part))) {
@@ -37,9 +40,6 @@ module.exports = {
 		},
 		render: '/_section/:id/:part?'
 	},
-	dependencies: {
-		Section: undefined
-	},
 	save: function (req, res) {
 		res.contentType('json');
 		var section = {body: req.body.body};
@@ -48,7 +48,7 @@ module.exports = {
 		}
 		section.markup = req.body.markup || 'markdown';
 		if (req.body.token === token) {
-			this.dependencies.Section.saveSection(req.body.id, section, function (err, result) {
+			Section.saveSection(req.body.id, section, function (err, result) {
 				if (err) {
 					res.send({success: false, message: 'Could not save section. LOCALIZE ME.'});
 					return;

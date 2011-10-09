@@ -6,6 +6,7 @@
 //  Copyright 2011 Colin Bate. All rights reserved.
 // 
 
+var Johannes = require('../common');
 var hash = require('hash');
 
 module.exports = {

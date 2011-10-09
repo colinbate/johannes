@@ -5,9 +5,9 @@
 		"languages": "lang"
 	},
 	"app": {
-		"name": "Colin.is",
+		"name": "Johannes",
 		"port": 5982,
-		"db": "colin-is",
+		"db": "johannes",
 		"viewengine": "ejs"
 	},
 	"language": {
