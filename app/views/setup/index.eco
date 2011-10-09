@@ -1,0 +1,16 @@
+<h1><%=@content.setup.title%></h1>
+
+<p>
+	<%-@content.setup.intro%>
+</p>
+
+<p>
+<% if @dbStatus.notFound: %>
+	<%-@content.setup.noDb%>
+<% else if !@isLocalhost: %>
+	<%-@content.setup.remote%>
+<% else: %>
+	<%-@content.setup.start%>
+<% end %>
+</p>
+

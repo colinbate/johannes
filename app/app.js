@@ -12,10 +12,12 @@ var config = Johannes.config;
 
 // 2. Set up web server (express)
 var express = require('express');
+var eco = require('eco');
 var app = express.createServer();
 app.configure(function () {
 	app.set('views', __dirname + '/' + config.folders.views);
 	app.set('view engine', config.app.viewengine);
+	app.register('.eco', eco);
 	app.use(express.bodyParser());
 	
 	app.use(express['static'](__dirname + '/' + config.folders.staticFiles));
@@ -23,6 +25,7 @@ app.configure(function () {
 	    open: '{{',
 	    close: '}}'
 	});
+	app.use(Johannes.middleware.isLocalhost);
 	app.use(app.router);
 	app.use(Johannes.routes.catchAll);
 });
@@ -36,6 +39,9 @@ app.dynamicHelpers ({
 
 app.locals({
 	lang: config.language.current,
+	attempt: function (field) {
+		return '';
+	},
 	d: function (value, defval) {
 		return (typeof (value) !== 'undefined') ? value : defval;
 	} 

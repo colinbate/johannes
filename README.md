@@ -6,6 +6,8 @@ It is designed to give the most freedom to the designer and developer of the sit
 
 ## Features / Ideas
 
+This is just a scratch pad for ideas at this point which is a bit more portable than writing them in a notebook by my desk.
+
  * Inline editing
  * Multiple content types
      * Text section
@@ -13,12 +15,24 @@ It is designed to give the most freedom to the designer and developer of the sit
      * More TBD
  * Markdown based syntax option
  * Very AJAX based, probably at most one page which is available out of context of the content itself
+ * Self contained installation
+     * Can write to the config.json
+     * Can setup the database (locally or remotely?)
+     * Creates an initial administrator
+     * Creates the root page and adds example content
  * Potential to reuse content by linking it within multiple pages
  * Custom pages can be served from the file system if present
  * Multiple author support
  * Content versioning
  * Content curation (timed release, expiry, etc)
  * Content workflow
+
+Some client side libraries that I'm using, or might use:
+
+ * jQuery
+ * SimpleModal
+ * jquery.form.js
+ * guiders.js --- for helping people initially 
 
 ## Notes
 

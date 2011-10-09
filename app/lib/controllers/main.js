@@ -9,25 +9,65 @@
 var Johannes = require('../common.js');
 var Page = Johannes.entity('page');
 
+var verifyDB = function (callback) {
+	var db = Johannes.db;
+	var status = {installed: false, error: false, notFound: false};
+	if (typeof (db) === 'undefined') {
+		status.notFound = true;
+		callback(null, status);
+	}
+	db.exists(function (err, exists) {
+		if (err) {
+			console.log('error', err);
+			status.error = true;
+			callback(err, status);
+		}
+		if (!exists) {
+			console.log('Database does not exist... need installation.');
+		}
+		status.installed = exists;
+		callback(null, status);
+	});
+};
+
+var isLocalhost = function (req) {
+	
+};
+
 module.exports = {
 	routes: {
 		index: '/',
-		home: '/home',
-		test: '/test'
+		home:  '/home',
+		about: '/_johannes'
 	},
 	
 	index: function (req, res) {
-		res.render('index');
+		verifyDB(function (err, status) {
+			if (!status.installed) {
+				res.render('setup/index.eco', {layout: 'layout.ejs', dbStatus: status, content: Johannes.lang.controller.main, i: require('util').inspect});
+			} else {
+				// Render the homepage
+				Page.load('index', function (err, page) {
+					if (err) {
+						res.render('error', Johannes.errors.pageNotFound);
+						return;
+					}
+					res.render('shell', {page: page, pageId: page.id});
+				});
+			}
+		});
 	},
 	home: function (req, res) {
 		var lang = Johannes.lang;
 		Page.load('home', function (err, page) {
 			if (err) {
-				res.render('error', {status: 404, message: lang.entity.page.error.load.message, title: lang.entity.page.error.load.title});
+				res.render('error', Johannes.errors.pageNotFound);
 				return;
 			}
 			res.render('shell', {page: page, pageId: page.id});
 		});
+	},
+	about: function (req, res) {
+		res.render('johannes');
 	}
-
 };
