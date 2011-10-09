@@ -3,6 +3,7 @@ syntax: glob
 fabfile.py*
 node_modules/**/*
 
+.monitor
 syntax: regexp
 ^logs
 ^private

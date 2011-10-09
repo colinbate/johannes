@@ -29,7 +29,8 @@
     "ejs": ">=0.2.1",
     "everyauth": ">=0.2.3",
     "markdown": "=0.1.8",
-    "cradle": ">=0.1.7"
+    "cradle": ">=0.1.7",
+	"eco": ">=1.1.0"
   },
   "devDependencies": {
   },

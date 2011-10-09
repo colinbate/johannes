@@ -12,7 +12,7 @@ var loadController = function (file, server) {
 	var app = server;
 	var controller = require('./controllers/' + file);
 	var routes = controller.routes;
-	var thisAction, meth, url;
+	var thisAction, meth, url, middleware;
 
 	Object.keys(controller).map(function(action){
 		var fn = controller[action];
@@ -25,10 +25,17 @@ var loadController = function (file, server) {
 				} else {
 					url = thisAction.url;
 					meth = thisAction.method.toLowerCase() || 'get';
+					middleware = thisAction.middleware;
 				}
-				app[meth](url, function (req, res) {
-					fn.apply(controller, [req, res]);
-				});
+				if (typeof (middleware) !== 'undefined') {
+					app[meth](url, middleware, function (req, res) {
+						fn.apply(controller, [req, res]);
+					});
+				} else {
+					app[meth](url, function (req, res) {
+						fn.apply(controller, [req, res]);
+					});
+				}
 				console.log('initialized', meth, url);
 			} else {
 				console.log('WARNING: no mapping for', action, 'defined');

@@ -13,6 +13,12 @@ var configPath = __dirname + '/../config.json';
 var cradle = require('cradle');
 var configLoader = require('./config');
 
+var isLocalhost = function (req, res, next) {
+	req.isLocalhost = (req.client.remoteAddress === '127.0.0.1');
+	res.local('isLocalhost', req.isLocalhost);
+	next();
+};
+
 var Common = (function () {
 	console.log('Initializing common Johannes components');
 	var config = configLoader.parse(configPath);
@@ -22,7 +28,7 @@ var Common = (function () {
 		return require('./entities/' + name);
 	};
 	// Handles all the requests which aren't handled by controllers (i.e. most of the content from the db)
-	var catchAll = function (req, res) {
+	var notFound = function (req, res) {
 		res.render('error', {status: 404, message: lang.entity.page.error.load.message, title: lang.entity.page.error.load.title});
 	};
 	return {
@@ -32,7 +38,13 @@ var Common = (function () {
 		controllers: require('./controller-loader'),
 		entity: entityLoader,
 		routes: {
-			catchAll: catchAll
+			catchAll: notFound
+		},
+		errors: {
+			pageNotFound: {status: 404, message: lang.entity.page.error.load.message, title: lang.entity.page.error.load.title}
+		},
+		middleware: {
+			isLocalhost: isLocalhost
 		}
 	};
 }());
