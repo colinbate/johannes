@@ -14,3 +14,6 @@
 <% end %>
 </p>
 
+<% if !@dbStatus.notFound && @isLocalhost: %>
+	<%-@partial 'site-info', { content: @lang.controller.main.siteInfo }%>
+<% end %>

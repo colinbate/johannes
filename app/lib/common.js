@@ -12,6 +12,7 @@ var configPath = __dirname + '/../config.json';
 
 var cradle = require('cradle');
 var configLoader = require('./config');
+var fs = require('fs');
 
 var isLocalhost = function (req, res, next) {
 	req.isLocalhost = (req.client.remoteAddress === '127.0.0.1');
@@ -19,10 +20,19 @@ var isLocalhost = function (req, res, next) {
 	next();
 };
 
+var saveConfig = function () {
+	var cfg = this.config;
+	if (typeof (cfg) !== 'undefined') {
+		var cfgStr = JSON.stringify(cfg);
+		fs.writeFileSync(configPath, cfgStr);
+	}
+};
+
 var Common = (function () {
 	console.log('Initializing common Johannes components');
-	var config = configLoader.parse(configPath);
-	var lang = config.language.current;
+	var cfg = configLoader.parse(configPath);
+	var config = cfg.config;
+	var lang = cfg.lang;
 	var db = new(cradle.Connection)().database(config.app.db);
 	var entityLoader = function (name) {
 		return require('./entities/' + name);
@@ -45,7 +55,8 @@ var Common = (function () {
 		},
 		middleware: {
 			isLocalhost: isLocalhost
-		}
+		},
+		saveConfig: saveConfig
 	};
 }());
 

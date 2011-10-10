@@ -38,7 +38,7 @@ app.dynamicHelpers ({
 });
 
 app.locals({
-	lang: config.language.current,
+	lang: Johannes.lang,
 	attempt: function (field) {
 		return '';
 	},
