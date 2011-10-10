@@ -17,12 +17,12 @@ var parseAppConfig = function (configFile) {
 		process.exit(1);
 	}
 	var langfile = __dirname + '/../' + config.folders.languages + '/' + config.language.code + '.json';
-	config.language.current = readConfig(langfile);
-	if (!config.language.current) {
+	var lang = readConfig(langfile);
+	if (!lang) {
 		console.log('Check', langfile, '- it did not parse well. Exiting.');
 		process.exit(1);
 	}
-	return config;
+	return {config: config, lang: lang};
 };
 
 

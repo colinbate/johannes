@@ -1,0 +1,11 @@
+<form id="site-info-form" method="post" action="/_config/save">
+	<fieldset>
+		<div class="field">
+			<label for="sitename"><%=@content.label.sitename%></label>
+			<input type="text" name="sitename" id="sitename" value="<%=@model.app.name%>">
+		</div>
+		<div class="buttons">
+			<input type="submit" name="primary" id="site-info-submit" value="<%-@content.button.submit%>">
+		</div>
+	</fieldset>
+</form>

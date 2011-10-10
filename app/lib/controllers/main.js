@@ -44,7 +44,7 @@ module.exports = {
 	index: function (req, res) {
 		verifyDB(function (err, status) {
 			if (!status.installed) {
-				res.render('setup/index.eco', {layout: 'layout.ejs', dbStatus: status, content: Johannes.lang.controller.main, i: require('util').inspect});
+				res.render('setup/index.eco', {layout: 'layout.ejs', dbStatus: status, content: Johannes.lang.controller.main, model: Johannes.config});
 			} else {
 				// Render the homepage
 				Page.load('index', function (err, page) {

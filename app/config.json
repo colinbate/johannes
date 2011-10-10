@@ -1,16 +1,1 @@
-{
-	"folders": {
-		"views": "views",
-		"staticFiles": "public",
-		"languages": "lang"
-	},
-	"app": {
-		"name": "Johannes",
-		"port": 5982,
-		"db": "johannes",
-		"viewengine": "ejs"
-	},
-	"language": {
-		"code": "en"
-	}
-}
+{"folders":{"views":"views","staticFiles":"public","languages":"lang"},"app":{"name":"Johannes","port":5982,"db":"johannes","viewengine":"ejs"},"language":{"code":"en"}}

@@ -21,6 +21,10 @@ module.exports = {
 			method: 'get',
 			middleware: loadContent
 		},
+		saveConfig: {
+			url: '/_config/save',
+			method: 'post'
+		},
 		auth: {
 			url: '/_auth',
 			method: 'post'
@@ -29,6 +33,18 @@ module.exports = {
 	},
 	administer: function (req, res) {
 		res.render('admin/index');
+	},
+	saveConfig: function (req, res) {
+		if (req.isLocalhost) {
+			var sitename = req.body.sitename;
+			if (sitename !== '') {
+				Johannes.config.app.name = sitename;
+				Johannes.saveConfig();
+				res.send({success: true});
+			}
+			return;
+		}
+		res.send({success: false, message: 'Cannot save config remotely'});
 	},
 	auth: function (req, res) {
 		res.contentType('json');

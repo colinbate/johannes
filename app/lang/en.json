@@ -28,6 +28,24 @@
 				"noDb": "We had a problem trying to connect to your CouchDB server. Check your settings in the <code>config.json</code> file and try reloading this page.",
 				"remote": "You are trying to access Johannes from another computer while it is not setup. By default this isn't allowed. If you need to do it, then edit the <code>config.json</code> file.",
 				"start": "Your system is ready to be setup. Follow the steps below to get started."
+			},
+			"siteInfo": {
+				"label": {
+					"sitename": "Site name"
+				},
+				"button": {
+					"submit": "Next &rsaquo;"
+				}
+			},
+			"newUser": {
+				"label": {
+					"username": "Username",
+					"password": "Password",
+					"repassword": "Retype password"
+				},
+				"button": {
+					"submit": "Next &rsaquo;"
+				}
 			}
 		}
 	}
