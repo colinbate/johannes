@@ -37,6 +37,21 @@
 					"submit": "Next &rsaquo;"
 				}
 			},
+			"dbInfo": {
+				"label": {
+					"host": "Server address",
+					"port": "Port number",
+					"name": "Database Name"
+				},
+				"hint": {
+					"host": "Can be a hostname or IP address",
+					"port": "CouchDB default is 5984",
+					"name": "Usually fine to leave it, but can be changed if desired"
+				},
+				"button": {
+					"submit": "Save Database Information &rsaquo;"
+				}
+			},
 			"newUser": {
 				"label": {
 					"username": "Username",

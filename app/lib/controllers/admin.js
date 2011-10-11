@@ -14,6 +14,21 @@ var loadContent = function (req, res, next) {
 	next();
 };
 
+var validateDbInfo = function (info) {
+	if (info.port === '') {
+		info.port = 5984;
+	} else {
+		info.port = parseInt(info.port, 10);
+	}
+	if (info.host === '') {
+		info.host = '127.0.0.1';
+	}
+	if (info.name === '') {
+		info.name = 'johannes';
+	}
+	return info;
+};
+
 module.exports = {
 	routes: {
 		administer: {
@@ -21,8 +36,8 @@ module.exports = {
 			method: 'get',
 			middleware: loadContent
 		},
-		saveConfig: {
-			url: '/_config/save',
+		saveDbInfo: {
+			url: '/_admin/db/save',
 			method: 'post'
 		},
 		auth: {
@@ -34,14 +49,20 @@ module.exports = {
 	administer: function (req, res) {
 		res.render('admin/index');
 	},
-	saveConfig: function (req, res) {
+	saveDbInfo: function (req, res) {
 		if (req.isLocalhost) {
-			var sitename = req.body.sitename;
-			if (sitename !== '') {
-				Johannes.config.app.name = sitename;
-				Johannes.saveConfig();
-				res.send({success: true});
-			}
+			var info = {
+				host: req.body.db_host,
+				port: req.body.db_port,
+				name: req.body.db_name
+			};
+			validateDbInfo(info);
+			Johannes.config.app.db.host = info.host;
+			Johannes.config.app.db.port = info.port;
+			Johannes.config.app.db.name = info.name;
+			Johannes.saveConfig();
+			
+			res.send({success: true});
 			return;
 		}
 		res.send({success: false, message: 'Cannot save config remotely'});

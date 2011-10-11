@@ -1,0 +1,19 @@
+<form id="db-info-form" method="post" action="/_admin/db/save">
+	<fieldset>
+		<div class="field">
+			<label for="db_host"><%=@content.label.host%></label>
+			<input type="text" name="db_host" id="db_host" value="<%=@model.app.db.host%>">
+		</div>
+		<div class="field">
+			<label for="db_port"><%=@content.label.port%></label>
+			<input type="text" name="db_port" id="db_port" value="<%=@model.app.db.port%>">
+		</div>
+		<div class="field">
+			<label for="db_name"><%=@content.label.name%></label>
+			<input type="text" name="db_name" id="db_name" value="<%=@model.app.db.name%>">
+		</div>
+		<div class="buttons">
+			<input type="submit" name="primary" id="db-info-submit" value="<%-@content.button.submit%>">
+		</div>
+	</fieldset>
+</form>

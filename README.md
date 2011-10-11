@@ -27,9 +27,11 @@ This is just a scratch pad for ideas at this point which is a bit more portable 
  * Content curation (timed release, expiry, etc)
  * Content workflow
 
-Some client side libraries that I'm using, or might use:
+Some client side libraries that I'm using, or might use. I need to do something with my code organization.
 
  * jQuery
+ * Backbone
+ * ICanHaz
  * SimpleModal
  * jquery.form.js
  * guiders.js --- for helping people initially 

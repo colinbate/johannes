@@ -15,5 +15,5 @@
 </p>
 
 <% if !@dbStatus.notFound && @isLocalhost: %>
-	<%-@partial 'site-info', { content: @lang.controller.main.siteInfo }%>
+	<%-@partial 'db-info', { content: @lang.controller.main.dbInfo }%>
 <% end %>

@@ -1,1 +1,1 @@
-{"folders":{"views":"views","staticFiles":"public","languages":"lang"},"app":{"name":"Johannes","port":5982,"db":"johannes","viewengine":"ejs"},"language":{"code":"en"}}
+{"folders":{"views":"views","staticFiles":"public","languages":"lang"},"app":{"name":"Johannes","port":5982,"db":{"name":"johannes","host":"127.0.0.1","port":5984},"viewengine":"ejs"},"language":{"code":"en"}}

@@ -33,7 +33,7 @@ var Common = (function () {
 	var cfg = configLoader.parse(configPath);
 	var config = cfg.config;
 	var lang = cfg.lang;
-	var db = new(cradle.Connection)().database(config.app.db);
+	var db = new(cradle.Connection)(config.app.db.host, config.app.db.port).database(config.app.db.name);
 	var entityLoader = function (name) {
 		return require('./entities/' + name);
 	};
