@@ -25,7 +25,6 @@ var parseAppConfig = function (configFile) {
 	return {config: config, lang: lang};
 };
 
-
 module.exports = {
 	parse: parseAppConfig
 };

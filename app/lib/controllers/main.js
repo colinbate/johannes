@@ -30,10 +30,6 @@ var verifyDB = function (callback) {
 	});
 };
 
-var isLocalhost = function (req) {
-	
-};
-
 module.exports = {
 	routes: {
 		index: '/',
@@ -47,7 +43,7 @@ module.exports = {
 				res.render('setup/index.eco', {layout: 'layout.ejs', dbStatus: status, content: Johannes.lang.controller.main, model: Johannes.config});
 			} else {
 				// Render the homepage
-				Page.load('index', function (err, page) {
+				Page.load('/', function (err, page) {
 					if (err) {
 						res.render('error', Johannes.errors.pageNotFound);
 						return;
