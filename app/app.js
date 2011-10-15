@@ -21,10 +21,6 @@ app.configure(function () {
 	app.use(express.bodyParser());
 	
 	app.use(express['static'](__dirname + '/' + config.folders.staticFiles));
-	app.set('view options', {
-	    open: '{{',
-	    close: '}}'
-	});
 	app.use(Johannes.middleware.isLocalhost);
 	app.use(app.router);
 	app.use(Johannes.routes.catchAll);
@@ -47,13 +43,13 @@ app.locals({
 	} 
 });
 
-var listen = function (err) {
+var listen = function (err, loadedControllers) {
 	if (err) {
 		console.log('Error loading controllers');
 		process.exit(1);
 	}
+	Johannes.controllers.current = loadedControllers;
 	console.log('Finished loading controllers');
-	
 	// Start listening
 	app.listen(config.app.port);
 	console.log(config.app.name, 'running on port', config.app.port);

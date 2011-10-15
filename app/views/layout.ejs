@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="/assets/style/reset.css" type="text/css" media="screen" charset="utf-8">
 	<link rel="stylesheet" href="/assets/style/text.css" type="text/css" media="screen" charset="utf-8">
 	<link rel="stylesheet" href="/assets/style/default.css" type="text/css" media="screen" charset="utf-8">
-	{{- styles.get() }}
+	<%- styles.get() %>
 </head>
 <body>
 	<div id="pageframe">
@@ -15,7 +15,7 @@
 		</div>
 		<div id="content">
 			<div id="primary">
-				{{- body }}
+				<%- body %>
 			</div>
 			<div id="rightcol">
 				<ul>
@@ -47,8 +47,8 @@
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/assets/js/jquery.form.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/assets/js/ICanHaz.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/assets/js/jquery.simplemodal.1.4.1.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="/assets/js/forms.js" type="text/javascript" charset="utf-8"></script>
-	{{- scripts.get() }}
+	<%- scripts.get() %>
 </body>
 </html>
