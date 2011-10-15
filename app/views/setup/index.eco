@@ -1,19 +1,25 @@
-<h1><%=@content.setup.title%></h1>
+<h1><%=@content.index.title%></h1>
 
 <p>
-	<%-@content.setup.intro%>
+	<%-@content.index.intro%>
 </p>
 
 <p>
 <% if @dbStatus.notFound: %>
-	<%-@content.setup.noDb%>
+	<%-@content.index.noDb%>
 <% else if !@isLocalhost: %>
-	<%-@content.setup.remote%>
+	<%-@content.index.remote%>
 <% else: %>
-	<%-@content.setup.start%>
+	<%-@content.index.start%>
 <% end %>
 </p>
 
 <% if !@dbStatus.notFound && @isLocalhost: %>
-	<%-@partial 'db-info', { content: @lang.controller.main.dbInfo }%>
+	<%-@partial 'db-info', { content: @content.dbInfo }%>
+	
+	<div id="newuser" style="display:none;">
+		<%-@partial 'admin/new-user.ejs', { content: @lang.controller.admin.newUser }%>
+	</div>
+	
+	<% @scripts.set('<script src="/assets/js/setup.js" type="text/javascript" charset="utf-8"></script>')%>
 <% end %>

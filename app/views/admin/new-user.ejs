@@ -1,17 +1,17 @@
 <form id="new-user-form">
 	<fieldset>
 		<div class="field">
-			<label for="username">{{=content.label.username}}</label>
-			<input type="text" name="username" id="username" value="{{=attempt('username')}}">
+			<label for="username"><%=content.label.username%></label>
+			<input type="text" name="username" id="username" value="<%=attempt('username')%>">
 		</div>
 		<div class="field">
-			<label for="pwd">{{=content.label.password}}</label>
-			<input type="password" name="pwd" id="pwd" value="{{=attempt('password')}}">
-			<label for="repwd">{{=content.label.repassword}}</label>
-			<input type="password" name="repwd" id="repwd" value="{{=attempt('repassword')}}">
+			<label for="pwd"><%=content.label.password%></label>
+			<input type="password" name="pwd" id="pwd" value="<%=attempt('password')%>">
+			<label for="repwd"><%=content.label.repassword%></label>
+			<input type="password" name="repwd" id="repwd" value="<%=attempt('repassword')%>">
 		</div>
 		<div class="buttons">
-			<input type="submit" name="primary" id="new-user-submit" value="{{-content.button.submit}}">
+			<input type="submit" name="primary" id="new-user-submit" value="<%-content.button.submit%>">
 		</div>
 	</fieldset>
 </form>

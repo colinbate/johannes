@@ -1,8 +1,8 @@
-{{ if (section) { }}
-<div class="section {{=section.markup}}" id="{{=section.id}}">
-	{{ if (section.header) { }}<h2>{{=section.header}}</h2>{{ } }}
+<% if (section) { %>
+<div class="section <%=section.markup%>" id="<%=section.id%>">
+	<% if (section.header) { %><h2><%=section.header%></h2><% } %>
 	<div class="section-body">
-		{{-preprocess(section)}}
+		<%-preprocess(section)%>
 	</div>
 </div>
-{{ } }}
+<% } %>
