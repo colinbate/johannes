@@ -16,6 +16,6 @@
 	// Initialize with DOM.
 	$(function () {
 		$('form#db-info-form').ajaxForm(dbInfoHandler);
-		$('form#new-user-form').ajaxForm(dbInfoHandler);
+		$('form#new-user-form').ajaxForm(newUserHandler);
 	});
 }());

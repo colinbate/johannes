@@ -2,14 +2,22 @@
 
 Johannes is a web content system. It is designed to be a content renderer, as well as a content production system. However, the latter can be used without the former with a simple API.
 
-It is designed to give the most freedom to the designer and developer of the site but also allow contextual editing of content for the content writer(s).
+It is designed to give freedom to the designer and developer of the site but allow contextual editing of content for the content writer(s). It has influences from wikis, blogs and other content systems to combine into what people hopefully find to be a well balanced system.
+
+**Goal:** Provide an easy way for content to take a front seat on a website.
+
+## Principles
+
+1. The experience of the content creator comes first.
+2. There should be minimal to no need for a developer to help maintain the site.
+3. Don't impose a fixed structure on the content creators or the designers.
 
 ## Features / Ideas
 
 This is just a scratch pad for ideas at this point which is a bit more portable than writing them in a notebook by my desk.
 
  * Inline editing
- * Multiple content types
+ * Multiple content chunk types
      * Text section
      * List (of links)
      * More TBD
