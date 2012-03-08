@@ -19,6 +19,8 @@ var loadContent = function (view) {
 	};
 };
 
+var remoteSetupError = {success: false, message: Johannes.lang.controller.setup.errors.remotesetup};
+
 var validateDbInfo = function (info) {
 	if (info.port === '') {
 		info.port = 5984;
@@ -32,6 +34,18 @@ var validateDbInfo = function (info) {
 		info.name = 'johannes';
 	}
 	return info;
+};
+
+var createRoles = function (db) {
+	
+};
+
+var createOwner = function (username, password) {
+	
+};
+
+var createDatabase = function () {
+	
 };
 
 module.exports = {
@@ -72,10 +86,13 @@ module.exports = {
 			res.send({success: true});
 			return;
 		}
-		res.send({success: false, message: 'Cannot save config remotely'});
+		res.send(remoteSetupError);
 	},
 	adminUser: function (req, res) {
-		
+		if (req.isLocalhost) {
+			
+		}
+		res.send(remoteSetupError);
 	},
 	initializeDatabase: function (req, res) {
 		
